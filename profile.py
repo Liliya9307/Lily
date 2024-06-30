@@ -20,8 +20,6 @@ observer.addService(rspec.Execute(shell="bash", command="sudo mkdir -p /var/webs
 
 # Add link between webserver and observer with specified IP addresses
 link = request.Link(members=[webserver, observer])
-link.addInterface(webserver.addInterface("eth1"))
-link.addInterface(observer.addInterface("eth1"))
 
 # Assign IP addresses to the interfaces
 webserver_if = webserver.addInterface("eth1")
