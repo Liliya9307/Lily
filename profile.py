@@ -18,8 +18,8 @@ observer.addService(rspec.Execute(shell="bash", command="sudo apt-get update"))
 observer.addService(rspec.Execute(shell="bash", command="sudo apt-get install -y nfs-kernel-server"))
 observer.addService(rspec.Execute(shell="bash", command="sudo mkdir -p /var/webserver_monitor"))
 
-# Add link between webserver and observer with specified IP addresses
-link = request.Link(members=[webserver, observer])
+# Add a link between webserver and observer
+link = request.Link(members=[webserver.iface[0], observer.iface[0]])
 
 # Assign IP addresses and subnet masks to the interfaces explicitly
 webserver_if = webserver.addInterface("eth1")
