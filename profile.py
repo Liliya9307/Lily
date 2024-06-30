@@ -39,4 +39,4 @@ for i in range(num_nodes):
         node.addService(rspec.Execute(shell="bash", command="sudo exportfs -r"))
         
         # Open NFS ports in firewall (if needed)
-  
+  pc.printRequestRSpec(request)
