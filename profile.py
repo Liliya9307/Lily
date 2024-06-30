@@ -1,11 +1,9 @@
 import geni.portal as portal
 import geni.rspec.pg as rspec
 
-# Define a Portal context to get information from the user
 pc = portal.Context()
-
-# Create a request object to start building the RSpec
 request = pc.makeRequestRSpec()
+
 
 # Number of nodes in your experiment
 num_nodes = 2  # You can adjust this based on your requirements
