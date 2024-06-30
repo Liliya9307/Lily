@@ -23,12 +23,14 @@ link = request.Link(members=[webserver, observer])
 link.addInterface(
     member=webserver,
     iface=webserver.addInterface("eth1"),
-    ip=portal.IPv4Address("192.168.1.1", "255.255.255.0"),
+    ip="192.168.1.1",
+    mask="255.255.255.0"
 )
 link.addInterface(
     member=observer,
     iface=observer.addInterface("eth1"),
-    ip=portal.IPv4Address("192.168.1.2", "255.255.255.0"),
+    ip="192.168.1.2",
+    mask="255.255.255.0"
 )
 
 # NFS export configuration on observer
@@ -37,3 +39,4 @@ observer.addService(rspec.Execute(shell="bash", command="sudo exportfs -a"))
 
 # Print the RSpec to the enclosing page
 pc.printRequestRSpec(request)
+
