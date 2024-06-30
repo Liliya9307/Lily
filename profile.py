@@ -20,18 +20,15 @@ observer.addService(rspec.Execute(shell="bash", command="sudo mkdir -p /var/webs
 
 # Add link between webserver and observer with specified IP addresses
 link = request.Link(members=[webserver, observer])
-link.addInterface(
-    member=webserver,
-    iface=webserver.addInterface("eth1"),
-    ip="192.168.1.1",
-    mask="255.255.255.0"
-)
-link.addInterface(
-    member=observer,
-    iface=observer.addInterface("eth1"),
-    ip="192.168.1.2",
-    mask="255.255.255.0"
-)
+link.addInterface(webserver.addInterface("eth1"))
+link.addInterface(observer.addInterface("eth1"))
+
+# Assign IP addresses to the interfaces
+webserver_if = webserver.addInterface("eth1")
+webserver_if.addAddress(rspec.IPv4Address("192.168.1.1", "255.255.255.0"))
+
+observer_if = observer.addInterface("eth1")
+observer_if.addAddress(rspec.IPv4Address("192.168.1.2", "255.255.255.0"))
 
 # NFS export configuration on observer
 observer.addService(rspec.Execute(shell="bash", command='echo "/var/webserver_monitor *(rw,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports'))
